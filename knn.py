@@ -138,7 +138,7 @@ acc = []
 # running KNN algorithm for 3 to 50 nearest neighbours(odd numbers) and 
 # storing the accuracy values
 
-for i in range(1, 100, 2):
+for i in range(1, 120, 2):
     neigh = KNeighborsClassifier(n_neighbors = i)
     neigh.fit(X_train, Y_train)
     train_acc = np.mean(neigh.predict(X_train) == Y_train)
@@ -149,18 +149,18 @@ for i in range(1, 100, 2):
 acc
     
 # Plotting the data accuracies
-plt.plot(np.arange(1, 100, 2), [i[1] for i in acc], "ro-")
-plt.plot(np.arange(1, 100, 2), [i[2] for i in acc], "bo-")
+plt.plot(np.arange(1, 120, 2), [i[1] for i in acc], "ro-")
+plt.plot(np.arange(1, 120, 2), [i[2] for i in acc], "bo-")
 
 
 # Hyperparameter optimization
 from sklearn.model_selection import GridSearchCV
 
-k_range = list(range(1, 100, 2))
+k_range = list(range(1, 120, 2))
 param_grid = dict(n_neighbors = k_range)
   
 # Defining parameter range
-grid = GridSearchCV(knn, param_grid, cv = 10, 
+grid = GridSearchCV(knn, param_grid, cv = 5, 
                     scoring = 'accuracy', 
                     return_train_score = False, verbose = 1)
 
